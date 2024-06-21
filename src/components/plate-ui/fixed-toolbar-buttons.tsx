@@ -13,7 +13,6 @@ import { Icons } from '@/components/Icons';
 
 import { InsertDropdownMenu } from './insert-dropdown-menu';
 import { MarkToolbarButton } from './mark-toolbar-button';
-import { ModeDropdownMenu } from './mode-dropdown-menu';
 import { ToolbarGroup } from './toolbar';
 import { TurnIntoDropdownMenu } from './turn-into-dropdown-menu';
 
@@ -61,12 +60,6 @@ export function FixedToolbarButtons() {
             </ToolbarGroup>
           </>
         )}
-
-        <div className="grow" />
-
-        <ToolbarGroup noSeparator>
-          <ModeDropdownMenu />
-        </ToolbarGroup>
       </div>
     </div>
   );

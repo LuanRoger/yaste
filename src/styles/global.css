@@ -123,7 +123,7 @@
         @apply m-0 border-border p-0 font-sans;
     }
     body {
-        @apply overflow-hidden bg-background text-foreground;
+        @apply overflow-y-auto bg-background text-foreground;
     }
     .draglayer {
         @apply bg-background;

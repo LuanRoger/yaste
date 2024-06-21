@@ -1,7 +1,7 @@
-import { Moon } from "lucide-react";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { updateDocumentTheme } from "@/helpers/theme_helpers";
+import { RiMoonFill } from "@remixicon/react";
 
 export default function ToggleTheme() {
     async function toggleTheme() {
@@ -11,7 +11,7 @@ export default function ToggleTheme() {
 
     return (
         <Button onClick={toggleTheme} size="icon">
-            <Moon size={16} />
+            <RiMoonFill size={16} />
         </Button>
     );
 }

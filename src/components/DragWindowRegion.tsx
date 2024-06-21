@@ -7,7 +7,7 @@ interface DragWindowRegionProps {
 
 export default function DragWindowRegion({ title }: DragWindowRegionProps) {
     return (
-        <div id="drag-window-region" className="flex w-screen flex-row-reverse items-stretch">
+        <div id="drag-window-region" className="flex w-screen flex-row-reverse items-stretch bg-background">
             <div className="flex">
                 <button
                     title="Minimize"

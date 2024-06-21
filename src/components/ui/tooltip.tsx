@@ -2,6 +2,7 @@ import * as React from "react"
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 
 import { cn } from "@/lib/utils"
+import { TooltipPortal } from "../plate-ui/tooltip"
 
 const TooltipProvider = TooltipPrimitive.Provider
 
