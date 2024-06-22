@@ -8,13 +8,12 @@ import {
     MenubarTrigger,
 } from "@/components/ui/menubar";
 import { Separator } from "@/components/ui/separator";
-import OpenFiles from "@/components/OpenFiles";
 import Footer from "@/components/Footer";
 
 export default function BaseLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="relative h-full w-full overflow-hidden">
-            <header className="fixed inset-x-0 top-0 z-50 flex flex-col">
+        <div className="relative overflow-hidden">
+            <header className="fixed inset-x-0 top-0 z-[60] flex flex-col">
                 <DragWindowRegion />
                 <Menubar>
                     <MenubarMenu>
@@ -27,8 +26,7 @@ export default function BaseLayout({ children }: { children: React.ReactNode }) 
                 </Menubar>
                 <Separator orientation="horizontal" />
             </header>
-            <OpenFiles />
-            <main className="ml[40px] relative mt-[69px] h-full p-1">{children}</main>
+            <main className="h-screen w-full mt-[69px] p-1">{children}</main>
             <Footer />
         </div>
     );

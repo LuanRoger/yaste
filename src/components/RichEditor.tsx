@@ -6,7 +6,6 @@ import { FixedToolbarButtons } from "./plate-ui/fixed-toolbar-buttons";
 import { TooltipProvider } from "./plate-ui/tooltip";
 import { plugins } from "@/lib/editor/plugins";
 import React from "react";
-import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
 export interface RichEditorProps extends EditorProps {
     editorRef?: ForwardedRef<PlateEditor<Value>> | undefined;
@@ -28,13 +27,14 @@ export default function RichEditor({
                 initialValue={initialValue}
                 readOnly={readOnly}
             >
-                <div className="translate-y-3 transition">
-                    <FixedToolbar>
-                        <FixedToolbarButtons />
-                    </FixedToolbar>
+                <div className="flex flex-col gap-2 h-full">
+                    <div className="transition">
+                        <FixedToolbar>
+                            <FixedToolbarButtons />
+                        </FixedToolbar>
+                    </div>
+                    <Editor {...props} />
                 </div>
-                <Editor {...props} />
-                
             </Plate>
         </TooltipProvider>
     );
