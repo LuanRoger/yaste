@@ -1,0 +1,1 @@
+export const FILE_OPEN_CHANNEL = "file:open";

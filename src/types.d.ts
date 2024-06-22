@@ -17,7 +17,12 @@ interface ElectronWindow {
     close: () => Promise<void>;
 }
 
+interface FileContext {
+    open: () => Promise<any>;
+}
+
 declare interface Window {
     themeMode: ThemeModeContext;
+    file: FileContext;
     electronWindow: ElectronWindow;
 }
