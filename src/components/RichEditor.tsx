@@ -27,8 +27,8 @@ export default function RichEditor({
                 initialValue={initialValue}
                 readOnly={readOnly}
             >
-                <div className="flex flex-col gap-2 h-full">
-                    <div className="transition">
+                <div className="flex flex-col gap-2">
+                    <div>
                         <FixedToolbar>
                             <FixedToolbarButtons />
                         </FixedToolbar>

@@ -14,7 +14,7 @@ export default function BaseLayout({ children }: { children: React.ReactNode }) 
                     <TopMenuBar />
                     <Separator orientation="horizontal" />
                 </header>
-                <main className="mt-[69px] h-screen w-full p-1">{children}</main>
+                <main className="mt-[69px] w-full p-1">{children}</main>
                 <Footer />
             </FilesProvider>
         </div>
