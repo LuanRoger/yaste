@@ -157,7 +157,14 @@ export const plugins = createPlugins(
         createIndentPlugin({
             inject: {
                 props: {
-                    validTypes: [ELEMENT_PARAGRAPH, ELEMENT_H1],
+                    validTypes: [
+                        ELEMENT_PARAGRAPH,
+                        ELEMENT_H1,
+                        ELEMENT_H2,
+                        ELEMENT_H3,
+                        ELEMENT_BLOCKQUOTE,
+                        ELEMENT_CODE_BLOCK,
+                    ],
                 },
             },
         }),

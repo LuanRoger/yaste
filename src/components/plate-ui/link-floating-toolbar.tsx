@@ -121,7 +121,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
           variant: 'ghost',
         })}
       >
-        <Icons.externalLink width={18} />
+        <Icons.externalLink size={18} />
       </LinkOpenButton>
 
       <Separator orientation="vertical" />
@@ -134,7 +134,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
         type="button"
         {...unlinkButtonProps}
       >
-        <Icons.unlink width={18} />
+        <Icons.unlink size={18} />
       </button>
     </div>
   );

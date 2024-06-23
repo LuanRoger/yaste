@@ -11,7 +11,7 @@ export default function BaseLayout({ children }: { children: React.ReactNode }) 
         <div className="relative overflow-hidden">
             <FilesProvider>
                 <ContentProvider>
-                    <header className="fixed inset-x-0 top-0 z-[60] flex flex-col">
+                    <header className="fixed inset-x-0 top-0 z-40 flex flex-col">
                         <DragWindowRegion />
                         <TopMenuBar />
                         <Separator orientation="horizontal" />
