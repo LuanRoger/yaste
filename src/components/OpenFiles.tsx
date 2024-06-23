@@ -18,22 +18,18 @@ export default function OpenFiles() {
     }
 
     return (
-        <aside className="shadow">
-            <div className="max-h-96 rounded-md border p-2">
-                <div className="flex flex-col items-center justify-around">
-                    {isEmpty ? (
-                        <OpenFileButton onClick={openFile} />
-                    ) : (
-                        filesContext.openFiles.map((file) => (
-                            <FileButton
-                                fileName={file.name}
-                                filePath={file.path}
-                                onClick={() => switchFile(file.id)}
-                            />
-                        ))
-                    )}
-                </div>
-            </div>
+        <aside className="flex flex-col rounded-md border p-1 shadow">
+            {isEmpty ? (
+                <OpenFileButton onClick={openFile} />
+            ) : (
+                filesContext.openFiles.map((file) => (
+                    <FileButton
+                        fileName={file.name}
+                        filePath={file.path}
+                        onClick={() => switchFile(file.id)}
+                    />
+                ))
+            )}
         </aside>
     );
 }

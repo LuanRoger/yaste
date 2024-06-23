@@ -1,4 +1,5 @@
 import { closeWindow, maximizeWindow, minimizeWindow } from "@/helpers/window_helpers";
+import useCurrentOpenFile from "@/hooks/use-current-open-file";
 import React, { type ReactNode } from "react";
 
 interface DragWindowRegionProps {
@@ -7,7 +8,10 @@ interface DragWindowRegionProps {
 
 export default function DragWindowRegion({ title }: DragWindowRegionProps) {
     return (
-        <div id="drag-window-region" className="flex w-screen flex-row-reverse items-stretch bg-background">
+        <div
+            id="drag-window-region"
+            className="flex w-screen select-none flex-row-reverse items-stretch bg-background"
+        >
             <div className="flex">
                 <button
                     title="Minimize"
@@ -52,7 +56,24 @@ export default function DragWindowRegion({ title }: DragWindowRegionProps) {
                 </button>
             </div>
             <div className="draglayer w-full" />
-            {title && <div className="flex flex-1 items-center justify-center p-2">{title}</div>}
+            {title && (
+                <div className="ml-4 flex flex-1 items-center justify-center">
+                    <FileNameTitle className="text-xs text-gray-400" defaultText="yaste.txt" />
+                </div>
+            )}
         </div>
     );
+}
+
+function FileNameTitle({
+    className,
+    defaultText,
+}: {
+    className?: string | undefined;
+    defaultText: string;
+}) {
+    const currentFile = useCurrentOpenFile();
+    const title = currentFile?.name || defaultText;
+
+    return <p className={className}>{title}</p>;
 }

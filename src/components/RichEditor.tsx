@@ -30,12 +30,10 @@ export default function RichEditor({
                 readOnly={readOnly}
                 onChange={onPlateChange}
             >
-                <div className="flex flex-col gap-2">
-                    <div>
-                        <FixedToolbar>
-                            <FixedToolbarButtons />
-                        </FixedToolbar>
-                    </div>
+                <div className="flex flex-col gap-2 h-full">
+                    <FixedToolbar>
+                        <FixedToolbarButtons />
+                    </FixedToolbar>
                     <Editor {...props} />
                 </div>
             </Plate>
