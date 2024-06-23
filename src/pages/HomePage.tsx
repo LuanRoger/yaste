@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import RichEditor from "@/components/RichEditor";
 import OpenFiles from "@/components/OpenFiles";
 import { FilesContext } from "@/contexts/files-context";

@@ -19,5 +19,6 @@ export async function openFile(): Promise<OpenFile | null> {
 }
 
 export async function saveFile(file: ISaveFile): Promise<void> {
+    console.log("Saving file", file);
     await window.file.save(file);
 }

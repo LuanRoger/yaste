@@ -53,7 +53,8 @@ async function handleFileSave(file: ISaveFile): Promise<void> {
     }
 
     try {
-        await writeFile(filePath, content);
+        console.log("Saving file", filePath);
+        await writeFile(filePath, content, { encoding: "utf-8", flag: "w" });
     } catch (_) {
         return;
     }

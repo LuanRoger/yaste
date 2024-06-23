@@ -19,6 +19,7 @@ export default function TopMenuBar() {
     async function openFile() {
         const openedFile: OpenFile | null = await openFileHelper();
         if (!openedFile) return;
+        if (filesContext.isOpen(openedFile.id, true)) return;
 
         filesContext.openFile(openedFile);
     }
@@ -26,7 +27,7 @@ export default function TopMenuBar() {
     async function saveFile() {
         const currentFile = filesContext.getCurrentOpenFile();
         const fileSaveData: ISaveFile = {
-            content: currentFile?.content || contentContext.getJsonContent(),
+            content: contentContext.getJsonContent(),
             path: currentFile?.path,
         };
         await saveFileHelper(fileSaveData);

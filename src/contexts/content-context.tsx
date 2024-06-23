@@ -35,8 +35,8 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
         try {
             const jsonValue = JSON.parse(currentContent) as T;
             return jsonValue;
-        } catch (_) {
-            console.log("Error parsing JSON content");
+        } catch (error) {
+            console.log("Error parsing JSON content", error);
             return undefined;
         }
     }

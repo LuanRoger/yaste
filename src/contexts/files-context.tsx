@@ -9,6 +9,7 @@ export interface IFilesContext {
     openFile: (newFile: OpenFile) => void;
     closeFile: (fileId: string) => void;
     switchOpenFile: (fileId: string) => void;
+    isOpen: (filePath: string, autoSwitch?: boolean) => boolean;
 }
 
 export const FilesContext = createContext<IFilesContext>({
@@ -18,6 +19,7 @@ export const FilesContext = createContext<IFilesContext>({
     openFile: () => {},
     closeFile: () => {},
     switchOpenFile: () => {},
+    isOpen: () => false,
 });
 
 export function FilesProvider({ children }: { children: React.ReactNode }) {
@@ -41,8 +43,19 @@ export function FilesProvider({ children }: { children: React.ReactNode }) {
     }
 
     function switchOpenFile(fileId: string) {
+        if (currentOpenFileId === fileId) return;
         setCurrentOpenFileId(fileId);
         console.log("Switching to file", fileId);
+    }
+
+    function isOpen(filePath: string, autoSwitch: boolean = false) {
+        const isOpen = openFiles.find((file) => file.path === filePath);
+
+        if (isOpen && autoSwitch) {
+            switchOpenFile(isOpen.id);
+        }
+
+        return isOpen !== undefined;
     }
 
     return (
@@ -54,6 +67,7 @@ export function FilesProvider({ children }: { children: React.ReactNode }) {
                 openFile,
                 closeFile,
                 switchOpenFile,
+                isOpen,
             }}
         >
             {children}
