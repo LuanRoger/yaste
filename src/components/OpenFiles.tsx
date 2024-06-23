@@ -9,7 +9,7 @@ export default function OpenFiles() {
     const isEmpty = filesContext.openFiles.length === 0;
 
     function switchFile(fileId: string) {
-        if (filesContext.currentOpenFileId === fileId) return;
+        //if (filesContext.currentOpenFileId === fileId) return;
         filesContext.switchOpenFile(fileId);
     }
     async function openFile() {
@@ -26,7 +26,11 @@ export default function OpenFiles() {
                         <OpenFileButton onClick={openFile} />
                     ) : (
                         filesContext.openFiles.map((file) => (
-                            <FileButton onClick={() => switchFile(file.id)} />
+                            <FileButton
+                                fileName={file.name}
+                                filePath={file.path}
+                                onClick={() => switchFile(file.id)}
+                            />
                         ))
                     )}
                 </div>

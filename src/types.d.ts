@@ -19,6 +19,7 @@ interface ElectronWindow {
 
 interface FileContext {
     open: () => Promise<any>;
+    save: (file: any) => Promise<void>;
 }
 
 declare interface Window {

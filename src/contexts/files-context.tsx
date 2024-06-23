@@ -42,6 +42,7 @@ export function FilesProvider({ children }: { children: React.ReactNode }) {
 
     function switchOpenFile(fileId: string) {
         setCurrentOpenFileId(fileId);
+        console.log("Switching to file", fileId);
     }
 
     return (

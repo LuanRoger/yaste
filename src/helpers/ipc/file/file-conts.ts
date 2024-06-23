@@ -1,0 +1,1 @@
+export const fileFilters = [{ name: "Text Files", extensions: ["txt"] }];

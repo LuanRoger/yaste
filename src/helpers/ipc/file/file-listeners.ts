@@ -1,18 +1,22 @@
 import { ipcMain } from "electron";
-import { FILE_OPEN_CHANNEL } from "./file-channels";
+import { FILE_OPEN_CHANNEL, FILE_SAVE_CHANNEL } from "./file-channels";
 import { dialog } from "electron";
-import { readFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { randomUUID } from "node:crypto";
 import { IFile } from "@/lib/types/file";
+import { ISaveFile } from "@/lib/types/save-file";
+import { fileFilters } from "./file-conts";
+import { basename } from "path";
 
 export function addFileListeners() {
     ipcMain.handle(FILE_OPEN_CHANNEL, handleFileOpen);
+    ipcMain.handle(FILE_SAVE_CHANNEL, (_, fileData) => handleFileSave(fileData));
 }
 
 async function handleFileOpen(): Promise<IFile | null> {
     const openFileDialog = await dialog.showOpenDialog({
         properties: ["openFile"],
-        filters: [{ name: "Text Files", extensions: ["txt"] }],
+        filters: fileFilters,
     });
 
     if (openFileDialog.canceled || openFileDialog.filePaths.length === 0) {
@@ -22,13 +26,35 @@ async function handleFileOpen(): Promise<IFile | null> {
 
     try {
         const content = await readFile(filePath, "utf-8");
+        const name = basename(filePath);
         const file: IFile = {
             uuid: randomUUID(),
+            name: name,
             content: content,
             path: filePath,
         };
         return file;
     } catch (_) {
         return null;
+    }
+}
+
+async function handleFileSave(file: ISaveFile): Promise<void> {
+    const { path, content } = file;
+    let filePath = path;
+    if (!filePath) {
+        const openFileDialog = await dialog.showSaveDialog({
+            filters: fileFilters,
+        });
+        if (openFileDialog.canceled) {
+            return;
+        }
+        filePath = openFileDialog.filePath;
+    }
+
+    try {
+        await writeFile(filePath, content);
+    } catch (_) {
+        return;
     }
 }

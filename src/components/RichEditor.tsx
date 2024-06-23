@@ -11,12 +11,14 @@ export interface RichEditorProps extends EditorProps {
     editorRef?: ForwardedRef<PlateEditor<Value>> | undefined;
     initialValue?: Value | undefined;
     readOnly?: boolean;
+    onPlateChange?: (value: Value) => void;
 }
 
 export default function RichEditor({
     editorRef,
     initialValue,
     readOnly = false,
+    onPlateChange,
     ...props
 }: RichEditorProps) {
     return (
@@ -26,6 +28,7 @@ export default function RichEditor({
                 editorRef={editorRef}
                 initialValue={initialValue}
                 readOnly={readOnly}
+                onChange={onPlateChange}
             >
                 <div className="flex flex-col gap-2">
                     <div>
