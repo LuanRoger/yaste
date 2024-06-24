@@ -1,8 +1,8 @@
 {
-    "name": "electron-shadcn",
-    "productName": "electron-shadcn Template",
-    "version": "1.0.0",
-    "description": "Electron Forge with shadcn-ui (Vite + Typescript)",
+    "name": "yaste",
+    "productName": "yaste",
+    "version": "0.0.1",
+    "description": "Yet another simple text editor",
     "main": ".vite/build/main.js",
     "scripts": {
         "start": "electron-forge start",
