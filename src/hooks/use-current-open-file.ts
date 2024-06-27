@@ -5,5 +5,5 @@ export default function useCurrentOpenFile() {
     const filesContext = useContext(FilesContext);
     const currentFile = useMemo(() => filesContext.getCurrentOpenFile(), [filesContext]);
 
-    return currentFile;
+    return { currentFile, filesContext };
 }

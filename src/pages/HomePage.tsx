@@ -1,31 +1,36 @@
 import React, { useCallback, useContext, useMemo } from "react";
 import RichEditor from "@/components/RichEditor";
 import OpenFiles from "@/components/OpenFiles";
-import { FilesContext } from "@/contexts/files-context";
 import { Value } from "@udecode/plate-common";
 import { ContentContext } from "@/contexts/content-context";
 import useCurrentOpenFile from "@/hooks/use-current-open-file";
+import { parseJsonToGeneric } from "@/lib/utils/json";
 
 export default function HomePage() {
-    const currentFile = useCurrentOpenFile();
+    const { currentFile, filesContext } = useCurrentOpenFile();
     const contentContext = useContext(ContentContext);
 
-    const content = useMemo(() => {
-        if (!currentFile) return undefined;
-
-        contentContext.setContent(currentFile.content);
-        return contentContext.getValueContent<Value>();
-    }, [currentFile]);
-    const saveCallback = useCallback(
-        (value: Value) => contentContext.setContent(value),
+    const changeCallback = useCallback(
+        (value: Value) => {
+            contentContext.setContent(value);
+            filesContext.currentFileStatusChange({ saved: false })
+        },
         [currentFile]
     );
-    const editor = useMemo(
-        () => (
-            <RichEditor key={currentFile?.id} initialValue={content} onPlateChange={saveCallback} />
-        ),
-        [content, saveCallback]
-    );
+    const editor = useMemo(() => {
+        console.log("currentFile", currentFile);
+        const currentContent = currentFile?.content;
+        contentContext.setContent(currentContent);
+        const contentValue = currentContent ? parseJsonToGeneric<Value>(currentContent) : undefined;
+
+        return (
+            <RichEditor
+                key={currentFile?.id}
+                initialValue={contentValue}
+                onPlateChange={changeCallback}
+            />
+        );
+    }, [changeCallback]);
 
     return (
         <div className="flex h-full flex-row justify-stretch gap-1">
