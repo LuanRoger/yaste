@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import FileButton from "./FileButton";
 import { FilesContext } from "@/contexts/files-context";
 import OpenFileButton from "./OpenFileButton";
@@ -10,6 +10,9 @@ export default function OpenFiles() {
 
     function switchFile(fileId: string) {
         filesContext.switchOpenFile(fileId);
+    }
+    function closeFile(fileId: string) {
+        filesContext.closeFile(fileId);
     }
     async function openFile() {
         const openedFile = await openFileHelpers();
@@ -26,7 +29,9 @@ export default function OpenFiles() {
                     <FileButton
                         fileName={file.name}
                         filePath={file.path}
+                        hasChanges={!file.saved}
                         onClick={() => switchFile(file.id)}
+                        onFileClose={() => closeFile(file.id)}
                     />
                 ))
             )}

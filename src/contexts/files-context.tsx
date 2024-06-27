@@ -10,6 +10,7 @@ export interface IFilesContext {
     closeFile: (fileId: string) => void;
     switchOpenFile: (fileId: string) => void;
     isOpen: (filePath: string, autoSwitch?: boolean) => boolean;
+    currentFileStatusChange: (newStatus: any) => void;
 }
 
 export const FilesContext = createContext<IFilesContext>({
@@ -20,6 +21,7 @@ export const FilesContext = createContext<IFilesContext>({
     closeFile: () => {},
     switchOpenFile: () => {},
     isOpen: () => false,
+    currentFileStatusChange: () => {},
 });
 
 export function FilesProvider({ children }: { children: React.ReactNode }) {
@@ -58,6 +60,23 @@ export function FilesProvider({ children }: { children: React.ReactNode }) {
         return isOpen !== undefined;
     }
 
+    function currentFileStatusChange(newStatus: any) {
+        const currentOpenFile = getCurrentOpenFile();
+        if(!currentOpenFile) {
+            return;
+        }
+
+        const files = Array.from(openFiles);
+        const index = files.findIndex((file) => file.id === currentOpenFile.id);
+        const newFileInfo = {
+            ...currentOpenFile,
+            ...newStatus,
+        }
+        console.log("newFileInfo", newFileInfo);
+        files[index] = newFileInfo;
+        setOpenFiles(files);
+    }
+
     return (
         <FilesContext.Provider
             value={{
@@ -68,6 +87,7 @@ export function FilesProvider({ children }: { children: React.ReactNode }) {
                 closeFile,
                 switchOpenFile,
                 isOpen,
+                currentFileStatusChange,
             }}
         >
             {children}

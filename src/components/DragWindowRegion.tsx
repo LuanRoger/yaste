@@ -72,7 +72,7 @@ function FileNameTitle({
     className?: string | undefined;
     defaultText: string;
 }) {
-    const currentFile = useCurrentOpenFile();
+    const { currentFile } = useCurrentOpenFile();
     const title = currentFile?.name || defaultText;
 
     return <p className={className}>{title}</p>;
