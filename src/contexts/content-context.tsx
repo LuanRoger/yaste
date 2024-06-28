@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 
 export interface IContentContext {
     content: any;
-    setContent: (content: any) => void;
+    setCurrentContent: (content: any) => void;
     resetContent: () => void;
     getJsonContent: () => string;
     getValueContent: <T>() => T | undefined;
@@ -11,7 +11,7 @@ export interface IContentContext {
 
 export const ContentContext = createContext<IContentContext>({
     content: null,
-    setContent: (_) => {},
+    setCurrentContent: (_) => {},
     resetContent: () => {},
     getJsonContent: () => "{}",
     getValueContent: () => undefined,
@@ -19,10 +19,6 @@ export const ContentContext = createContext<IContentContext>({
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
     const [currentContent, setCurrentContent] = useState<any>(null);
-
-    function setContent(content: any) {
-        setCurrentContent(content);
-    }
 
     function resetContent() {
         setCurrentContent(null);
@@ -40,7 +36,7 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
         <ContentContext.Provider
             value={{
                 content: currentContent,
-                setContent,
+                setCurrentContent,
                 resetContent,
                 getJsonContent,
                 getValueContent,

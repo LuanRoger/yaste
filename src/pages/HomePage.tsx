@@ -1,35 +1,31 @@
-import React, { useCallback, useContext, useEffect, useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import RichEditor from "@/components/RichEditor";
 import OpenFiles from "@/components/OpenFiles";
 import { Value } from "@udecode/plate-common";
 import { ContentContext } from "@/contexts/content-context";
 import useCurrentOpenFile from "@/hooks/use-current-open-file";
 import { parseJsonToGeneric } from "@/lib/utils/json";
-import useKeyboardShortcut from "@/hooks/use-keyboard-shortcut";
-import { saveFile } from "@/lib/actions/file-actions";
+import useOpenSaveFile from "@/hooks/use-open-save-file";
+import { openFile, saveFile } from "@/lib/actions/file-actions";
 
 export default function HomePage() {
     const { currentFile, filesContext } = useCurrentOpenFile();
     const contentContext = useContext(ContentContext);
-
-    useKeyboardShortcut(
+    useOpenSaveFile(
         () => saveFile(filesContext, contentContext),
-        { ctrlKey: true, code: "KeyS" },
-        [contentContext, filesContext]
+        () => openFile(filesContext, contentContext),
+        [contentContext, currentFile]
     );
 
-    const changeCallback = useCallback(
-        (value: Value) => {
-            console.log("value", value);
-            contentContext.setContent(value);
-            filesContext.currentFileStatusChange({ saved: false });
-        },
-        [currentFile]
-    );
+    const changeCallback = useCallback((value: Value) => {
+        console.log("value", value);
+        contentContext.setCurrentContent(value);
+        filesContext.currentFileStatusChange({ saved: false });
+    }, [contentContext]);
     const editor = useMemo(() => {
         const currentContent = currentFile?.content;
         const contentValue = currentContent ? parseJsonToGeneric<Value>(currentContent) : undefined;
-        contentContext.setContent(contentValue);
+        contentContext.setCurrentContent(contentValue);
 
         return (
             <RichEditor
@@ -38,7 +34,7 @@ export default function HomePage() {
                 onPlateChange={changeCallback}
             />
         );
-    }, [changeCallback]);
+    }, [filesContext]);
 
     return (
         <div className="flex h-full flex-row justify-stretch gap-1">
