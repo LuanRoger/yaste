@@ -39,7 +39,7 @@ async function handleFileOpen(): Promise<IFile | null> {
     }
 }
 
-async function handleFileSave(file: ISaveFile): Promise<void> {
+async function handleFileSave(file: ISaveFile): Promise<IFile | null> {
     const { path, content } = file;
     let filePath = path;
     if (!filePath) {
@@ -47,15 +47,22 @@ async function handleFileSave(file: ISaveFile): Promise<void> {
             filters: fileFilters,
         });
         if (openFileDialog.canceled) {
-            return;
+            return null;
         }
         filePath = openFileDialog.filePath;
     }
 
     try {
-        console.log("Saving file", filePath);
         await writeFile(filePath, content, { encoding: "utf-8", flag: "w" });
+        const name = basename(filePath);
+        const file: IFile = {
+            uuid: randomUUID(),
+            name: name,
+            content: content,
+            path: filePath,
+        };
+        return file;
     } catch (_) {
-        return;
+        return null;
     }
 }

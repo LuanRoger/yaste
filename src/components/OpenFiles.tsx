@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import FileButton from "./FileButton";
 import { FilesContext } from "@/contexts/files-context";
 import OpenFileButton from "./OpenFileButton";

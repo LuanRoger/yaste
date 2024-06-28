@@ -8,9 +8,9 @@ import {
 } from "@/components/ui/menubar";
 import { FilesContext } from "@/contexts/files-context";
 import { OpenFile } from "@/lib/models/open-file";
-import { openFile as openFileHelper, saveFile as saveFileHelper } from "@/helpers/file-helpers";
-import { ISaveFile } from "@/lib/types/save-file";
+import { openFile as openFileHelper } from "@/helpers/file-helpers";
 import { ContentContext } from "@/contexts/content-context";
+import { saveFile } from "@/lib/actions/file-actions";
 
 export default function TopMenuBar() {
     const filesContext = useContext(FilesContext);
@@ -24,13 +24,8 @@ export default function TopMenuBar() {
         filesContext.openFile(openedFile);
     }
 
-    async function saveFile() {
-        const currentFile = filesContext.getCurrentOpenFile();
-        const fileSaveData: ISaveFile = {
-            content: contentContext.getJsonContent(),
-            path: currentFile?.path,
-        };
-        await saveFileHelper(fileSaveData);
+    async function saveFileHandler() {
+        saveFile(filesContext, contentContext);
     }
 
     return (
@@ -39,7 +34,7 @@ export default function TopMenuBar() {
                 <MenubarTrigger>Arquivo</MenubarTrigger>
                 <MenubarContent>
                     <MenubarItem onSelect={openFile}>Abrir</MenubarItem>
-                    <MenubarItem onSelect={saveFile}>Salvar</MenubarItem>
+                    <MenubarItem onSelect={saveFileHandler}>Salvar</MenubarItem>
                 </MenubarContent>
             </MenubarMenu>
         </Menubar>

@@ -47,7 +47,6 @@ export function FilesProvider({ children }: { children: React.ReactNode }) {
     function switchOpenFile(fileId: string) {
         if (currentOpenFileId === fileId) return;
         setCurrentOpenFileId(fileId);
-        console.log("Switching to file", fileId);
     }
 
     function isOpen(filePath: string, autoSwitch: boolean = false) {
@@ -72,7 +71,6 @@ export function FilesProvider({ children }: { children: React.ReactNode }) {
             ...currentOpenFile,
             ...newStatus,
         }
-        console.log("newFileInfo", newFileInfo);
         files[index] = newFileInfo;
         setOpenFiles(files);
     }

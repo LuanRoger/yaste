@@ -18,7 +18,18 @@ export async function openFile(): Promise<OpenFile | null> {
     return fileOpen;
 }
 
-export async function saveFile(file: ISaveFile): Promise<void> {
-    console.log("Saving file", file);
-    await window.file.save(file);
+export async function saveFile(file: ISaveFile): Promise<OpenFile | null> {
+    const response = await window.file.save(file);
+    if (!response) {
+        return null;
+    }
+
+    const fileOpen = new OpenFile(
+        response.uuid,
+        response.name,
+        response.path,
+        response.content,
+        true
+    );
+    return fileOpen;
 }
