@@ -14,9 +14,10 @@ export async function saveFile(filesContext: IFilesContext, contentContext: ICon
     };
     const result = await saveFileHelper(fileSaveData);
     if (!result || currentFile) {
+        filesContext.currentFileStatusChange({ saved: true });
         return;
     }
-
+    
     filesContext.openFile(result);
 }
 

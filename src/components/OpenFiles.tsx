@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import FileButton from "./FileButton";
 import { FilesContext } from "@/contexts/files-context";
 import OpenFileButton from "./OpenFileButton";
@@ -6,7 +6,7 @@ import { openFile as openFileHelpers } from "@/helpers/file-helpers";
 
 export default function OpenFiles() {
     const filesContext = useContext(FilesContext);
-    const isEmpty = filesContext.openFiles.length === 0;
+    const isEmpty = useMemo(() => filesContext.openFiles.length === 0, [filesContext]);
 
     function switchFile(fileId: string) {
         filesContext.switchOpenFile(fileId);

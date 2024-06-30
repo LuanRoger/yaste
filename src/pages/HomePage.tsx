@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useContext, useEffect, useMemo } from "react";
 import RichEditor from "@/components/RichEditor";
 import OpenFiles from "@/components/OpenFiles";
 import { Value } from "@udecode/plate-common";
@@ -17,29 +17,30 @@ export default function HomePage() {
         [contentContext, currentFile]
     );
 
-    const changeCallback = useCallback((value: Value) => {
-        console.log("value", value);
-        contentContext.setCurrentContent(value);
-        filesContext.currentFileStatusChange({ saved: false });
-    }, [contentContext]);
-    const editor = useMemo(() => {
+    const initialValue = useMemo(() => {
         const currentContent = currentFile?.content;
         const contentValue = currentContent ? parseJsonToGeneric<Value>(currentContent) : undefined;
         contentContext.setCurrentContent(contentValue);
+        console.log("reload state");
 
-        return (
-            <RichEditor
-                key={currentFile?.id}
-                initialValue={contentValue}
-                onPlateChange={changeCallback}
-            />
-        );
-    }, [filesContext]);
+        return contentValue;
+    }, [filesContext.currentOpenFileId]);
+
+    function handleContentChange(value: Value) {
+        filesContext.currentFileStatusChange({ saved: false });
+        contentContext.setCurrentContent(value);
+    }
 
     return (
         <div className="flex h-full flex-row justify-stretch gap-1">
             <OpenFiles />
-            <div className="flex-1">{editor}</div>
+            <div className="flex-1">
+                <RichEditor
+                    key={currentFile?.id} // Force re-render when switching files
+                    initialValue={initialValue}
+                    onPlateChange={handleContentChange}
+                />
+            </div>
         </div>
     );
 }
