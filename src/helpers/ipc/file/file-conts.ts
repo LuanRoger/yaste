@@ -1,1 +1,1 @@
-export const fileFilters = [{ name: "Text Files", extensions: ["txt"] }];
+export const fileFilters = [{ name: "Yet Another Text File Format", extensions: ["yat"] }];

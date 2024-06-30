@@ -17,14 +17,24 @@ export async function saveFile(filesContext: IFilesContext, contentContext: ICon
         filesContext.currentFileStatusChange({ saved: true });
         return;
     }
-    
+
     filesContext.openFile(result);
 }
 
-export async function openFile(filesContext: IFilesContext, contentContext: IContentContext) {
+export async function openFile(filesContext: IFilesContext) {
     const openedFile: OpenFile | null = await openFileHelper();
     if (!openedFile) return;
     if (filesContext.isOpen(openedFile.id, true)) return;
 
     filesContext.openFile(openedFile);
+}
+
+export function switchFile(
+    fileId: string,
+    filesContext: IFilesContext,
+    contentContext: IContentContext
+) {
+    const jsonContent = contentContext.getJsonContent();
+    filesContext.currentFileStatusChange({ content: jsonContent });
+    filesContext.switchOpenFile(fileId);
 }

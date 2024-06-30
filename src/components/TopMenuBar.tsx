@@ -15,7 +15,7 @@ export default function TopMenuBar() {
     const contentContext = useContext(ContentContext);
 
     function openFileHandler() {
-        openFile(filesContext, contentContext)
+        openFile(filesContext)
     }
 
     function saveFileHandler() {

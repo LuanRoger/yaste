@@ -13,7 +13,7 @@ export default function HomePage() {
     const contentContext = useContext(ContentContext);
     useOpenSaveFile(
         () => saveFile(filesContext, contentContext),
-        () => openFile(filesContext, contentContext),
+        () => openFile(filesContext),
         [contentContext, currentFile]
     );
 
