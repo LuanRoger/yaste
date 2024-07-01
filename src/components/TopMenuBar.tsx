@@ -13,8 +13,8 @@ import { FilesContext } from "@/contexts/files-context";
 import { ContentContext } from "@/contexts/content-context";
 import { openFile, saveFile } from "@/lib/actions/file-actions";
 import ToggleTheme from "./ToggleTheme";
-import { cn } from "@/lib/utils";
 import LangToggle from "./LangToggle";
+import { useTranslation } from "react-i18next";
 
 interface TopMenuBarProps {
     className?: string | undefined;
@@ -23,6 +23,7 @@ interface TopMenuBarProps {
 export default function TopMenuBar({ className }: TopMenuBarProps) {
     const filesContext = useContext(FilesContext);
     const contentContext = useContext(ContentContext);
+    const { t } = useTranslation()
 
     function openFileHandler() {
         openFile(filesContext);
@@ -35,21 +36,21 @@ export default function TopMenuBar({ className }: TopMenuBarProps) {
     return (
         <Menubar className={className}>
             <MenubarMenu>
-                <MenubarTrigger>Arquivo</MenubarTrigger>
+                <MenubarTrigger>{t("topMenuBar:file")}</MenubarTrigger>
                 <MenubarContent>
-                    <MenubarItem onSelect={openFileHandler}>Abrir</MenubarItem>
-                    <MenubarItem onSelect={saveFileHandler}>Salvar</MenubarItem>
+                    <MenubarItem onSelect={openFileHandler}>{t("topMenuBar:open")}</MenubarItem>
+                    <MenubarItem onSelect={saveFileHandler}>{t("topMenuBar:save")}</MenubarItem>
                 </MenubarContent>
             </MenubarMenu>
             <MenubarMenu>
-                <MenubarTrigger>Configurações</MenubarTrigger>
+                <MenubarTrigger>{t("topMenuBar:settings")}</MenubarTrigger>
                 <MenubarContent>
                     <MenubarSub>
-                        <MenubarSubTrigger>Tema</MenubarSubTrigger>
+                        <MenubarSubTrigger>{t("topMenuBar:theme")}</MenubarSubTrigger>
                         <ToggleTheme/>
                     </MenubarSub>
                     <MenubarSub>
-                        <MenubarSubTrigger>Idioma</MenubarSubTrigger>
+                        <MenubarSubTrigger>{t("topMenuBar:language")}</MenubarSubTrigger>
                         <LangToggle />
                     </MenubarSub>
                 </MenubarContent>
@@ -57,10 +58,3 @@ export default function TopMenuBar({ className }: TopMenuBarProps) {
         </Menubar>
     );
 }
-
-{/* <LangToggle />
-            <MenubarMenu>
-                <MenubarTrigger asChild>
-                    <ToggleTheme />
-                </MenubarTrigger>
-            </MenubarMenu> */}

@@ -20,9 +20,11 @@ import { ListStyleType } from "@udecode/plate-indent-list";
 import { OutdentToolbarButton } from "./outdent-toolbar-button";
 import { IndentToolbarButton } from "./indent-toolbar-button";
 import { IndentTodoToolbarButton } from "./indent-todo-toolbar-button";
+import { useTranslation } from "react-i18next";
 
 export function FixedToolbarButtons() {
     const readOnly = useEditorReadOnly();
+    const { t } = useTranslation();
 
     return (
         <div className="w-full overflow-hidden">
@@ -40,23 +42,23 @@ export function FixedToolbarButtons() {
                         </ToolbarGroup>
 
                         <ToolbarGroup>
-                            <MarkToolbarButton nodeType={MARK_BOLD} tooltip="Bold (⌘+B)">
+                            <MarkToolbarButton nodeType={MARK_BOLD} tooltip={t("editorToolbar:bold")}>
                                 <Icons.bold />
                             </MarkToolbarButton>
-                            <MarkToolbarButton nodeType={MARK_ITALIC} tooltip="Italic (⌘+I)">
+                            <MarkToolbarButton nodeType={MARK_ITALIC} tooltip={t("editorToolbar:italic")}>
                                 <Icons.italic />
                             </MarkToolbarButton>
-                            <MarkToolbarButton nodeType={MARK_UNDERLINE} tooltip="Underline (⌘+U)">
+                            <MarkToolbarButton nodeType={MARK_UNDERLINE} tooltip={t("editorToolbar:underline")}>
                                 <Icons.underline />
                             </MarkToolbarButton>
 
                             <MarkToolbarButton
                                 nodeType={MARK_STRIKETHROUGH}
-                                tooltip="Strikethrough (⌘+⇧+M)"
+                                tooltip={t("editorToolbar:strikethrough")}
                             >
                                 <Icons.strikethrough />
                             </MarkToolbarButton>
-                            <MarkToolbarButton nodeType={MARK_CODE} tooltip="Code (⌘+E)">
+                            <MarkToolbarButton nodeType={MARK_CODE} tooltip={t("editorToolbar:code")}>
                                 <Icons.code />
                             </MarkToolbarButton>
                         </ToolbarGroup>

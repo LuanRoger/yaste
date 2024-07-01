@@ -1,8 +1,8 @@
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import DragWindowRegion from "@/components/DragWindowRegion";
 import { Separator } from "@/components/ui/separator";
 import TopMenuBar from "@/components/TopMenuBar";
-import { FilesContext, FilesProvider } from "@/contexts/files-context";
+import { FilesProvider } from "@/contexts/files-context";
 import { ContentProvider } from "@/contexts/content-context";
 
 export default function BaseLayout({ children }: { children: React.ReactNode }) {
@@ -15,7 +15,7 @@ export default function BaseLayout({ children }: { children: React.ReactNode }) 
                         <TopMenuBar className="mt-1" />
                         <Separator className="mt-1" orientation="horizontal" />
                     </header>
-                    <main className="mt-[75px] w-full p-1">{children}</main>
+                    <main className="mt-[77px] w-full p-1">{children}</main>
                 </ContentProvider>
             </FilesProvider>
         </div>

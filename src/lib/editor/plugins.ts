@@ -75,9 +75,6 @@ import { createIndentPlugin } from "@udecode/plate-indent";
 import { createIndentListPlugin } from "@udecode/plate-indent-list";
 import { resetBlockTypesCommonRule, resetBlockTypesCodeBlockRule } from "@/lib/editor/reset-rules";
 
-//TODO: Add emoji plugin
-//TODO: Remove dependencies from FloatingBar
-//TODO: Add link button
 export const plugins = createPlugins(
     [
         createParagraphPlugin(),

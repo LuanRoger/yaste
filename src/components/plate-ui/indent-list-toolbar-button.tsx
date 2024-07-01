@@ -9,6 +9,7 @@ import {
 import { Icons } from '@/components/Icons';
 
 import { ToolbarButton } from './toolbar';
+import { useTranslation } from 'react-i18next';
 
 export const IndentListToolbarButton = withRef<
   typeof ToolbarButton,
@@ -18,12 +19,13 @@ export const IndentListToolbarButton = withRef<
 >(({ nodeType = ListStyleType.Disc }, ref) => {
   const state = useIndentListToolbarButtonState({ nodeType });
   const { props } = useIndentListToolbarButton(state);
+  const { t } = useTranslation();
 
   return (
     <ToolbarButton
       ref={ref}
       tooltip={
-        nodeType === ListStyleType.Disc ? 'Bulleted List' : 'Numbered List'
+        nodeType === ListStyleType.Disc ? t("editorToolbar:bulletList") : t("editorToolbar:numberedList")
       }
       {...props}
     >

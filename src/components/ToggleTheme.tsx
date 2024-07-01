@@ -9,10 +9,12 @@ import { RiCheckLine } from "@remixicon/react";
 import { MenubarItem, MenubarSubContent } from "./ui/menubar";
 import { ThemeMode } from "@/lib/types/theme-mode";
 import { Skeleton } from "./ui/skeleton";
+import { useTranslation } from "react-i18next";
 
 export default function ToggleTheme() {
     const [isLoading, setIsLoading] = useState(true);
     const [mode, setMode] = useState<ThemeMode | undefined>();
+    const { t } = useTranslation()
 
     useEffect(() => {
         async function fetchMode() {
@@ -51,21 +53,21 @@ export default function ToggleTheme() {
                         onSelect={() => handleThemeChange("light")}
                     >
                         {mode === "light" && <RiCheckLine size={20} />}
-                        Claro
+                        {t("topMenuBar:lightTheme")}
                     </MenubarItem>
                     <MenubarItem
                         className="flex flex-row gap-1"
                         onSelect={() => handleThemeChange("dark")}
                     >
                         {mode === "dark" && <RiCheckLine size={20} />}
-                        Escuro
+                        {t("topMenuBar:darkTheme")}
                     </MenubarItem>
                     <MenubarItem
                         className="flex flex-row gap-1"
                         onSelect={() => handleThemeChange("system")}
                     >
                         {mode === "system" && <RiCheckLine size={20} />}
-                        Sistema
+                        {t("topMenuBar:systemTheme")}
                     </MenubarItem>
                 </>
             ) : (
