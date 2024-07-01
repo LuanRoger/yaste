@@ -4,6 +4,9 @@ import {
     MenubarContent,
     MenubarItem,
     MenubarMenu,
+    MenubarSub,
+    MenubarSubContent,
+    MenubarSubTrigger,
     MenubarTrigger,
 } from "@/components/ui/menubar";
 import { FilesContext } from "@/contexts/files-context";
@@ -11,9 +14,10 @@ import { ContentContext } from "@/contexts/content-context";
 import { openFile, saveFile } from "@/lib/actions/file-actions";
 import ToggleTheme from "./ToggleTheme";
 import { cn } from "@/lib/utils";
+import LangToggle from "./LangToggle";
 
 interface TopMenuBarProps {
-    className?: string | undefined
+    className?: string | undefined;
 }
 
 export default function TopMenuBar({ className }: TopMenuBarProps) {
@@ -29,8 +33,7 @@ export default function TopMenuBar({ className }: TopMenuBarProps) {
     }
 
     return (
-        <Menubar className={cn("flex justify-between items-center", className)}>
-            <div>
+        <Menubar className={className}>
             <MenubarMenu>
                 <MenubarTrigger>Arquivo</MenubarTrigger>
                 <MenubarContent>
@@ -38,14 +41,26 @@ export default function TopMenuBar({ className }: TopMenuBarProps) {
                     <MenubarItem onSelect={saveFileHandler}>Salvar</MenubarItem>
                 </MenubarContent>
             </MenubarMenu>
-            </div>
-            <div>
+            <MenubarMenu>
+                <MenubarTrigger>Configurações</MenubarTrigger>
+                <MenubarContent>
+                    <MenubarSub>
+                        <MenubarSubTrigger>Tema</MenubarSubTrigger>
+                        <ToggleTheme/>
+                    </MenubarSub>
+                    <MenubarSub>
+                        <MenubarSubTrigger>Idioma</MenubarSubTrigger>
+                        <LangToggle />
+                    </MenubarSub>
+                </MenubarContent>
+            </MenubarMenu>
+        </Menubar>
+    );
+}
+
+{/* <LangToggle />
             <MenubarMenu>
                 <MenubarTrigger asChild>
                     <ToggleTheme />
                 </MenubarTrigger>
-            </MenubarMenu>
-            </div>
-        </Menubar>
-    );
-}
+            </MenubarMenu> */}

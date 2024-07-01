@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 import langs from "@/localization/langs";
 import { useTranslation } from "react-i18next";
 import { setAppLanguage } from "@/helpers/language_helpers";
+import { MenubarContent, MenubarItem, MenubarMenu, MenubarSubContent, MenubarTrigger } from "./ui/menubar";
+import { RiCheckLine } from "@remixicon/react";
 
 export default function LangToggle() {
     const { i18n } = useTranslation();
@@ -13,12 +14,17 @@ export default function LangToggle() {
     }
 
     return (
-        <ToggleGroup type="single" onValueChange={onValueChange} value={currentLang}>
+        <MenubarSubContent>
             {langs.map((lang) => (
-                <ToggleGroupItem key={lang.key} value={lang.key}>
+                <MenubarItem
+                    key={lang.key}
+                    onSelect={() => onValueChange(lang.key)}
+                    className="flex flex-row gap-1"
+                >
+                    {currentLang === lang.key && <RiCheckLine size={20} />}
                     {`${lang.prefix} ${lang.nativeName}`}
-                </ToggleGroupItem>
+                </MenubarItem>
             ))}
-        </ToggleGroup>
+        </MenubarSubContent>
     );
 }

@@ -1,17 +1,30 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { updateDocumentTheme } from "@/helpers/theme_helpers";
-import { RiMoonFill } from "@remixicon/react";
+import { isInDarkMode, setThemeToDark, setThemeToLight } from "@/helpers/theme_helpers";
+import { RiCheckLine } from "@remixicon/react";
+import { MenubarItem, MenubarSubContent } from "./ui/menubar";
 
 export default function ToggleTheme() {
-    async function toggleTheme() {
-        const isDarkMode = await window.themeMode.toggle();
-        updateDocumentTheme(isDarkMode);
+    const isDarkMode = isInDarkMode();
+
+    async function handleThemeChange(setToDarkMode: boolean) {
+        if (setToDarkMode) {
+            setThemeToDark();
+            return;
+        }
+
+        setThemeToLight();
     }
 
     return (
-        <Button onClick={toggleTheme} size="icon" variant="ghost">
-            <RiMoonFill size={16} />
-        </Button>
+        <MenubarSubContent>
+            <MenubarItem className="flex flex-row gap-1" onSelect={() => handleThemeChange(false)}>
+                {!isDarkMode && <RiCheckLine size={20} />}
+                Claro
+            </MenubarItem>
+            <MenubarItem className="flex flex-row gap-1" onSelect={() => handleThemeChange(true)}>
+                {isDarkMode && <RiCheckLine size={20} />}
+                Escuro
+            </MenubarItem>
+        </MenubarSubContent>
     );
 }
