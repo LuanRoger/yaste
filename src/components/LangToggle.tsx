@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import langs from "@/localization/langs";
 import { useTranslation } from "react-i18next";
 import { setAppLanguage } from "@/helpers/language_helpers";
-import { MenubarContent, MenubarItem, MenubarMenu, MenubarSubContent, MenubarTrigger } from "./ui/menubar";
+import { MenubarItem, MenubarSubContent } from "./ui/menubar";
 import { RiCheckLine } from "@remixicon/react";
 
 export default function LangToggle() {

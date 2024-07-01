@@ -1,10 +1,14 @@
+import { ThemeMode } from "@/lib/types/theme-mode";
+
 export async function setThemeToDefault() {
     const isDarkMode = await window.themeMode.system();
     updateDocumentTheme(isDarkMode);
 }
 
-export function isInDarkMode(): boolean {
-    return document.documentElement.classList.contains("dark");
+export async function getCurrentMode(): Promise<ThemeMode> {
+    const mode = await window.themeMode.current();
+
+    return mode;
 }
 
 export function updateDocumentTheme(isDarkMode: boolean) {
@@ -23,4 +27,9 @@ export async function setThemeToDark() {
 export async function setThemeToLight() {
     await window.themeMode.light();
     updateDocumentTheme(false);
+}
+
+export async function setThemeToSystem() {
+    const isDarkMode = await window.themeMode.system();
+    updateDocumentTheme(isDarkMode);
 }
