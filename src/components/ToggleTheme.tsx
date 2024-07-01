@@ -10,7 +10,7 @@ export default function ToggleTheme() {
     }
 
     return (
-        <Button onClick={toggleTheme} size="icon">
+        <Button onClick={toggleTheme} size="icon" variant="ghost">
             <RiMoonFill size={16} />
         </Button>
     );

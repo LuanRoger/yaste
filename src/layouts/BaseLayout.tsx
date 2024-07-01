@@ -12,10 +12,10 @@ export default function BaseLayout({ children }: { children: React.ReactNode }) 
                 <ContentProvider>
                     <header className="fixed inset-x-0 top-0 z-40 flex flex-col">
                         <DragWindowRegion title={"asdas"} />
-                        <TopMenuBar />
-                        <Separator orientation="horizontal" />
+                        <TopMenuBar className="mt-1" />
+                        <Separator className="mt-1" orientation="horizontal" />
                     </header>
-                    <main className="mt-[69px] w-full p-1">{children}</main>
+                    <main className="mt-[75px] w-full p-1">{children}</main>
                 </ContentProvider>
             </FilesProvider>
         </div>

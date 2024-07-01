@@ -9,13 +9,19 @@ import {
 import { FilesContext } from "@/contexts/files-context";
 import { ContentContext } from "@/contexts/content-context";
 import { openFile, saveFile } from "@/lib/actions/file-actions";
+import ToggleTheme from "./ToggleTheme";
+import { cn } from "@/lib/utils";
 
-export default function TopMenuBar() {
+interface TopMenuBarProps {
+    className?: string | undefined
+}
+
+export default function TopMenuBar({ className }: TopMenuBarProps) {
     const filesContext = useContext(FilesContext);
     const contentContext = useContext(ContentContext);
 
     function openFileHandler() {
-        openFile(filesContext)
+        openFile(filesContext);
     }
 
     function saveFileHandler() {
@@ -23,7 +29,8 @@ export default function TopMenuBar() {
     }
 
     return (
-        <Menubar>
+        <Menubar className={cn("flex justify-between items-center", className)}>
+            <div>
             <MenubarMenu>
                 <MenubarTrigger>Arquivo</MenubarTrigger>
                 <MenubarContent>
@@ -31,6 +38,14 @@ export default function TopMenuBar() {
                     <MenubarItem onSelect={saveFileHandler}>Salvar</MenubarItem>
                 </MenubarContent>
             </MenubarMenu>
+            </div>
+            <div>
+            <MenubarMenu>
+                <MenubarTrigger asChild>
+                    <ToggleTheme />
+                </MenubarTrigger>
+            </MenubarMenu>
+            </div>
         </Menubar>
     );
 }
