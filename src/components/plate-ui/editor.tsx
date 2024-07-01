@@ -11,7 +11,7 @@ import { ScrollArea } from "../ui/scroll-area";
 const editorVariants = cva(
     cn(
         "relative whitespace-pre-wrap break-words",
-        "w-full min-h-96 rounded-md bg-background px-6 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none",
+        "w-full min-h-[28rem] rounded-md bg-background px-6 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none",
         "[&_[data-slate-placeholder]]:text-muted-foreground [&_[data-slate-placeholder]]:!opacity-100",
         "[&_[data-slate-placeholder]]:top-[auto_!important]",
         "[&_strong]:font-bold"
@@ -50,7 +50,7 @@ export type EditorProps = PlateContentProps & VariantProps<typeof editorVariants
 const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
     ({ className, disabled, focusRing, focused, readOnly, size, variant, ...props }, ref) => {
         return (
-            <ScrollArea className="max-h-96">
+            <ScrollArea className="max-h-[28rem]">
                 <div className="relative w-full" ref={ref}>
                     <PlateContent
                         aria-disabled={disabled}

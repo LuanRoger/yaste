@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import RichEditor from "@/components/RichEditor";
 import OpenFiles from "@/components/OpenFiles";
 import { Value } from "@udecode/plate-common";
@@ -21,7 +21,6 @@ export default function HomePage() {
         const currentContent = currentFile?.content;
         const contentValue = currentContent ? parseJsonToGeneric<Value>(currentContent) : undefined;
         contentContext.setCurrentContent(contentValue);
-        console.log("reload state");
 
         return contentValue;
     }, [filesContext.currentOpenFileId]);
