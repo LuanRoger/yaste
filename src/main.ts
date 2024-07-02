@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from "electron";
-import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import registerListeners from "./helpers/ipc/listeners-register";
 import path from "path";
 
@@ -14,20 +13,20 @@ function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
+        minHeight: 600,
+        minWidth: 700,
         webPreferences: {
             devTools: inDevelopment,
             contextIsolation: true,
             nodeIntegration: true,
             nodeIntegrationInSubFrames: false,
+            spellcheck: false,
 
             preload: preload,
         },
         titleBarStyle: "hidden",
     });
     registerListeners(mainWindow);
-    installExtension(REACT_DEVELOPER_TOOLS)
-        .then((name) => console.log(`Added Extension:  ${name}`))
-        .catch((err) => console.log("An error occurred: ", err));
 
     if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
         mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
