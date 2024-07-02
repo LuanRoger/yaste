@@ -7,7 +7,7 @@ Yet another super ₛᵢₘₚₗₑ text editor.
 > [!WARNING]
 > This project is just for demo purposes, it will not be actively maintained.
 
-generated from [electron-shadcn](https://github.com/LuanRoger/electron-shadcn)
+generated from [electron-shadcn](https://github.com/LuanRoger/electron-shadcn).
 
 ## Features
 
@@ -53,4 +53,4 @@ You can use the [demo file](https://github.com/LuanRoger/yaste/blob/main/demo.ya
 
 ## License
 
-This project is under the MIT license. Check the [LICENSE](https://github.com/LuanRoger/yaste?tab=MIT-1-ov-file) for more information.
+This project is under the MIT license. Check the [LICENSE](https://github.com/LuanRoger/yaste/blob/main/LICENSE) for more information.
