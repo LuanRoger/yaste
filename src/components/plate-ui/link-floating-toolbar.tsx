@@ -25,6 +25,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { inputVariants } from '@/components/ui/input';
 import { popoverVariants } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
+import { useTranslation } from 'react-i18next';
 
 const floatingOptions: UseVirtualFloatingOptions = {
   middleware: [
@@ -72,6 +73,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
   const inputProps = useFormInputProps({
     preventDefaultOnEnterKeydown: true,
   });
+  const { t } = useTranslation();
 
   if (hidden) return null;
 
@@ -84,7 +86,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
 
         <FloatingLinkUrlInput
           className={inputVariants({ h: 'sm', variant: 'ghost' })}
-          placeholder="Paste link"
+          placeholder={t("editorToolbar:pasteLink")}
         />
       </div>
       <Separator />
@@ -94,7 +96,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
         </div>
         <input
           className={inputVariants({ h: 'sm', variant: 'ghost' })}
-          placeholder="Text to display"
+          placeholder={t("editorToolbar:textToDisplay")}
           {...textInputProps}
         />
       </div>
@@ -110,7 +112,7 @@ export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
         type="button"
         {...editButtonProps}
       >
-        Edit link
+        {t("editorToolbar:editLink")}
       </button>
 
       <Separator orientation="vertical" />

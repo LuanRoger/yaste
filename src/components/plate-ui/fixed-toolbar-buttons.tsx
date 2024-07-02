@@ -5,6 +5,8 @@ import {
     MARK_CODE,
     MARK_ITALIC,
     MARK_STRIKETHROUGH,
+    MARK_SUBSCRIPT,
+    MARK_SUPERSCRIPT,
     MARK_UNDERLINE,
 } from "@udecode/plate-basic-marks";
 import { useEditorReadOnly } from "@udecode/plate-common";
@@ -19,8 +21,8 @@ import { IndentListToolbarButton } from "./indent-list-toolbar-button";
 import { ListStyleType } from "@udecode/plate-indent-list";
 import { OutdentToolbarButton } from "./outdent-toolbar-button";
 import { IndentToolbarButton } from "./indent-toolbar-button";
-import { IndentTodoToolbarButton } from "./indent-todo-toolbar-button";
 import { useTranslation } from "react-i18next";
+import { LinkToolbarButton } from "./link-toolbar-button";
 
 export function FixedToolbarButtons() {
     const readOnly = useEditorReadOnly();
@@ -42,13 +44,22 @@ export function FixedToolbarButtons() {
                         </ToolbarGroup>
 
                         <ToolbarGroup>
-                            <MarkToolbarButton nodeType={MARK_BOLD} tooltip={t("editorToolbar:bold")}>
+                            <MarkToolbarButton
+                                nodeType={MARK_BOLD}
+                                tooltip={t("editorToolbar:bold")}
+                            >
                                 <Icons.bold />
                             </MarkToolbarButton>
-                            <MarkToolbarButton nodeType={MARK_ITALIC} tooltip={t("editorToolbar:italic")}>
+                            <MarkToolbarButton
+                                nodeType={MARK_ITALIC}
+                                tooltip={t("editorToolbar:italic")}
+                            >
                                 <Icons.italic />
                             </MarkToolbarButton>
-                            <MarkToolbarButton nodeType={MARK_UNDERLINE} tooltip={t("editorToolbar:underline")}>
+                            <MarkToolbarButton
+                                nodeType={MARK_UNDERLINE}
+                                tooltip={t("editorToolbar:underline")}
+                            >
                                 <Icons.underline />
                             </MarkToolbarButton>
 
@@ -58,8 +69,24 @@ export function FixedToolbarButtons() {
                             >
                                 <Icons.strikethrough />
                             </MarkToolbarButton>
-                            <MarkToolbarButton nodeType={MARK_CODE} tooltip={t("editorToolbar:code")}>
+                            <MarkToolbarButton
+                                nodeType={MARK_CODE}
+                                tooltip={t("editorToolbar:code")}
+                            >
                                 <Icons.code />
+                            </MarkToolbarButton>
+
+                            <MarkToolbarButton
+                                nodeType={MARK_SUPERSCRIPT}
+                                tooltip={"Super"}
+                            >
+                                <Icons.superscript />
+                            </MarkToolbarButton>
+                            <MarkToolbarButton
+                                nodeType={MARK_SUBSCRIPT}
+                                tooltip={"Sbu"}
+                            >
+                                <Icons.subscript />
                             </MarkToolbarButton>
                         </ToolbarGroup>
 
@@ -69,7 +96,10 @@ export function FixedToolbarButtons() {
 
                             <OutdentToolbarButton />
                             <IndentToolbarButton />
-                            <IndentTodoToolbarButton />
+                        </ToolbarGroup>
+
+                        <ToolbarGroup>
+                            <LinkToolbarButton />
                         </ToolbarGroup>
                     </>
                 )}
