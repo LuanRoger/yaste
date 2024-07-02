@@ -52,6 +52,19 @@
 
         src: url("../assets/fonts/geist/Geist-UltraBlack.woff2") format("woff2");
     }
+
+    @font-face {
+        font-family: "Geist Mono";
+        font-weight: 400;
+
+        src: url("../assets/fonts/geist-mono/GeistMono-Regular.woff2") format("woff2");
+    }
+    @font-face {
+        font-family: "Geist Mono";
+        font-weight: 700;
+
+        src: url("../assets/fonts/geist-mono/GeistMono-Bold.woff2") format("woff2");
+    }
 }
 
 @layer base {
@@ -120,7 +133,7 @@
 
 @layer base {
     * {
-        @apply m-0 border-border p-0 font-sans;
+        @apply m-0 border-border p-0;
     }
     body {
         @apply overflow-hidden h-screen w-full bg-background text-foreground;

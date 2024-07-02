@@ -68,7 +68,7 @@ export const Icons = {
     chevronDown: RiArrowDownSFill,
     chevronLeft: RiArrowLeftSFill,
     chevronRight: RiArrowRightSFill,
-    chevronsUpDown: RiArrowUpCircleFill,
+    chevronsUpDown: RiCodeBlock,
     clear: RiCloseLine,
     close: RiCloseLine,
     code: RiCodeSSlashFill,

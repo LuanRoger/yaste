@@ -54,6 +54,7 @@ module.exports = {
             },
             fontFamily: {
                 sans: ["Geist", "sans-serif"],
+                mono: ['"Geist Mono"', "monospace"],
             },
             borderRadius: {
                 lg: "var(--radius)",

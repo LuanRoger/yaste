@@ -58,7 +58,7 @@ export default function DragWindowRegion({ title }: DragWindowRegionProps) {
             <div className="draglayer w-full" />
             {title && (
                 <div className="ml-4 flex flex-1 items-center justify-center">
-                    <FileNameTitle className="text-xs text-gray-400" defaultText="yaste.txt" />
+                    <FileNameTitle className="text-xs text-gray-400" defaultText="yaste.yat" />
                 </div>
             )}
         </div>
