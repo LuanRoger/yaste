@@ -58,7 +58,7 @@ export default function TopMenuBar({ className }: TopMenuBarProps) {
                     </MenubarContent>
                 </MenubarMenu>
                 <MenubarMenu>
-                    <MenubarTrigger onClick={() => setAboutDialogOpen(true)}>Sobre</MenubarTrigger>
+                    <MenubarTrigger onClick={() => setAboutDialogOpen(true)}>{t("topMenuBar:about")}</MenubarTrigger>
                 </MenubarMenu>
             </Menubar>
             <AboutDialog open={aboutDialogOpen} setOpen={setAboutDialogOpen} />

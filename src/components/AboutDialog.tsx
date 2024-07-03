@@ -1,27 +1,29 @@
 import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import packageJson from "@/../package.json";
 import { IconTextLabel } from "./IconTextLabel";
 import { RiGithubFill, RiLinkedinFill } from "@remixicon/react";
 import { TextAnimatedGradient } from "./TextAnimatedGradient";
+import { useTranslation } from "react-i18next";
 
 interface AboutDialogProps {
-    asChild?: boolean;
     open?: boolean;
     setOpen?: (open: boolean) => void;
 }
 
-export default function AboutDialog({ asChild, open, setOpen }: AboutDialogProps) {
+export default function AboutDialog({ open, setOpen }: AboutDialogProps) {
+    const { t } = useTranslation();
+
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Sobre</DialogTitle>
-                    <p className="text-sm text-gray-400">Versão: {packageJson.version}</p>
+                    <DialogTitle>{t("aboutDialog:title")}</DialogTitle>
+                    <p className="text-sm text-gray-400">{`${t("aboutDialog:version")}: ${packageJson.version}`}</p>
                 </DialogHeader>
                 <div className="flex flex-col text-sm">
                     <span>
-                        <span>Feito por </span>
+                        <span>{t("aboutDialog:madeBy")} </span>
                         <a href="https://github.com/LuanRoger" className="underline">
                             Luan Roger.
                         </a>
@@ -32,11 +34,11 @@ export default function AboutDialog({ asChild, open, setOpen }: AboutDialogProps
                             href="https://github.com/LuanRoger/yaste/blob/main/LICENSE"
                             className="underline"
                         >
-                            MIT License.
+                            {t("aboutDialog:license")}
                         </a>
                     </span>
-                    <TextAnimatedGradient fromColor="#009b3a" viaColor="#fedf00">
-                        Made in Brasil 🇧🇷.
+                    <TextAnimatedGradient>
+                        {t("aboutDialog:madeIn")}
                     </TextAnimatedGradient>
                 </div>
                 <footer className="flex flex-row items-center justify-around gap-2 text-sm text-gray-400">

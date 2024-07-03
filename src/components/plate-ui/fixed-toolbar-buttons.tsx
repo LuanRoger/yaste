@@ -78,13 +78,13 @@ export function FixedToolbarButtons() {
 
                             <MarkToolbarButton
                                 nodeType={MARK_SUPERSCRIPT}
-                                tooltip={"Super"}
+                                tooltip={t("editorToolbar:superscript")}
                             >
                                 <Icons.superscript />
                             </MarkToolbarButton>
                             <MarkToolbarButton
                                 nodeType={MARK_SUBSCRIPT}
-                                tooltip={"Sbu"}
+                                tooltip={t("editorToolbar:subscript")}
                             >
                                 <Icons.subscript />
                             </MarkToolbarButton>

@@ -15,6 +15,7 @@ i18n.use(initReactI18next).init({
                 darkTheme: "Dark",
                 systemTheme: "System",
                 language: "Language",
+                about: "About",
             },
             filesSidebar: {
                 openFile: "Open file",
@@ -33,6 +34,8 @@ i18n.use(initReactI18next).init({
                 underline: "Underline",
                 strikethrough: "Strikethrough",
                 code: "Code",
+                superscript: "Superscript",
+                subscript: "Subscript",
                 bulletList: "Bullet list",
                 numberedList: "Numbered list",
                 outdent: "Outdent",
@@ -42,6 +45,13 @@ i18n.use(initReactI18next).init({
                 pasteLink: "Paste link",
                 textToDisplay: "Text to display",
                 editLink: "Edit link",
+            },
+            aboutDialog: {
+                title: "About",
+                version: "Version",
+                madeBy: "Made by",
+                madeIn: "Made in Brasil 🇧🇷.",
+                license: "MIT License."
             },
         },
         "pt-BR": {
@@ -55,6 +65,7 @@ i18n.use(initReactI18next).init({
                 darkTheme: "Escuro",
                 systemTheme: "Sistema",
                 language: "Idioma",
+                about: "Sobre",
             },
             filesSidebar: {
                 openFile: "Abrir arquivo",
@@ -73,6 +84,8 @@ i18n.use(initReactI18next).init({
                 underline: "Sublinhado",
                 strikethrough: "Riscado",
                 code: "Código",
+                superscript: "Sobrescrito",
+                subscript: "Subscrito",
                 bulletList: "Lista de marcadores",
                 numberedList: "Lista numerada",
                 outdent: "Diminuir recuo",
@@ -83,6 +96,13 @@ i18n.use(initReactI18next).init({
                 textToDisplay: "Texto a ser exibido",
                 editLink: "Editar link",
             },
+            aboutDialog: {
+                title: "Sobre",
+                version: "Versão",
+                madeBy: "Feito por",
+                madeIn: "Feito no Brasil 🇧🇷.",
+                license: "Licença MIT."
+            }
         },
     },
 });
